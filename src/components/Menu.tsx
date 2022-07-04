@@ -1,11 +1,11 @@
 import Link from "next/link";
+import {useAppContext} from "./StateWrapper";
 import styles from "../styles/Menu.module.css";
 
-export default function Menu() {
-
-    const handleClickCart = (event: React.MouseEvent<HTMLButtonElement>) => {
-        event.preventDefault();
-        console.log(event);
+const Menu = () => {
+    const cart = useAppContext()
+    const handleOpenCart = () => {
+        cart.openCart()
     }
 
     return (
@@ -17,9 +17,11 @@ export default function Menu() {
             </div>
 
             <div></div>
-            <a href="#" className={styles.link} onClick={handleClickCart}>
-                Cart
+            <a href="#" className={styles.link} onClick={handleOpenCart}>
+                Cart ({cart.getNumberOfItems()})
             </a>
         </nav>
     );
 }
+
+export default Menu

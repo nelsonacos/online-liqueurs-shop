@@ -1,8 +1,15 @@
+import React, { ReactNode } from 'react'
 import Head from "next/head"
 import Menu from "./Menu"
 import styles from '../styles/Layout.module.css'
+import ShoppingCart from "./ShoppingCart"
 
-export default function layout({ children, title }) {
+export type LayoutProps = {
+    title: string,
+    children?: ReactNode,
+}
+
+export default function layout({ title, children }: LayoutProps) {
     return (
         <div>
             <Head>
@@ -13,7 +20,10 @@ export default function layout({ children, title }) {
 
             <Menu />
 
-            <div className={styles.container}>{children}</div>
+            <div className={styles.container}>
+                {children}
+            </div>
+            <ShoppingCart />
         </div>
     )
 }

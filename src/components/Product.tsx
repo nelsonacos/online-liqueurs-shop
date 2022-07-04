@@ -1,15 +1,15 @@
 import Link from "next/link"
 import styles from "../styles/Product.module.css"
 import ButtonCart from "./ButtonCart"
-import ProductInterface from "../interfaces/Product"
+import ProductInfo from "../interfaces/Product"
 import React from "react"
 
-type Props = {
-    item: ProductInterface,
-    showAs: string
+type ProductProps = {
+    item: ProductInfo,
+    showAs: string, 
 }
 
-const Product = ({ item, showAs }: Props) => {
+const Product = ({ item, showAs }: ProductProps) => {
     if (showAs === "Page") {
         return (
             <div className={styles.page}>
@@ -21,6 +21,17 @@ const Product = ({ item, showAs }: Props) => {
                     <div>
                         <ButtonCart item={item} />
                     </div>
+                </div>
+            </div>
+        );
+    }
+
+    if (showAs === "CartItem") {
+        return (
+            <div className={styles.listItem}>
+                <div>
+                    <div>{item.name}</div>
+                    <div>${item.total_price}</div>
                 </div>
             </div>
         );

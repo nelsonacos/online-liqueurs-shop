@@ -1,9 +1,7 @@
 import { NextPage, GetStaticProps, InferGetStaticPropsType } from "next"
-import { Params } from "next/dist/shared/lib/router/utils/route-matcher"
 import Layout from "../../components/Layout"
 import Product from "../../components/Product"
 import { getPathById, getProductById } from "../../helpers/normalize"
-import ProductInfo from "../../interfaces/Product"
 
 const ProductPage: NextPage = ({productInfo}: InferGetStaticPropsType<typeof getStaticProps>) => {
     return (
