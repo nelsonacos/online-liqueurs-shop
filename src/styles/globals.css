@@ -17,6 +17,30 @@ a {
 }
 
 h2 {
-  font-size: 62px;
+  font-size: 26px;
   margin: 20px 0 0 0;
+}
+
+h3 {
+  font-size: 10px;
+  margin: 20px 0 0 0;
+}
+.btn-cart {
+  width: 150px;
+  min-width: 88px;
+  min-height: 28px;
+  border-radius: 3px;
+  border: none;
+  font-size: 13px;
+  line-height: 24px;
+  background-color: #f6c70a;
+  color: #000;
+  font-weight: 600;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.btn-cart:hover{
+  background-color: #d8ac03;
+  cursor: pointer;
 }

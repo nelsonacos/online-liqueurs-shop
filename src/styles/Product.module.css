@@ -1,6 +1,3 @@
-.page {
-}
-
 .items {
   display: flex;
   flex-wrap: wrap;
@@ -18,8 +15,21 @@
 }
 
 .item h3 {
-  font-size: 32px;
+  font-size: 16px;
   margin: 5px 0;
+}
+
+.added {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 234px;
+}
+
+.added > h3 {
+  font-size: 18px;
+  margin: 10px 10px 10px 10px;
 }
 
 .listItem {
@@ -63,4 +73,17 @@
 .price {
   font-size: 28px;
   margin: 10px 0;
+}
+
+.default {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin: 0 30px 0 0;
+}
+
+.default > .price {
+  color: #ff1d25;
+  margin-right: 15px;
+  font-size: 18px;
 }

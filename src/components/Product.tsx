@@ -54,6 +54,24 @@ const Product = ({ item, showAs }: ProductProps) => {
         );
     }
 
+    if (showAs === "AddedItem") {
+        return (
+            <div className={styles.addedItem}>
+                <div className={styles.added}>
+                    <h3>
+                        Added to Cart
+                    </h3>
+                    <Image
+                        src={item.image_url}
+                        alt="cart item"
+                        width={100}
+                        height={100}
+                    />
+                </div>
+            </div>
+        );
+    }
+
     return (
         <div className={styles.item}>
             <div>
@@ -75,9 +93,13 @@ const Product = ({ item, showAs }: ProductProps) => {
                     </Link>
                 </h3>
             </div>
-            <div>${item.total_price}</div>
-            <div>
-                <ButtonCart item={item} />
+            <div className={styles.default}>
+                <div className={styles.price}>
+                    ${item.total_price}
+                </div>
+                <div>
+                    <ButtonCart item={item} />
+                </div>
             </div>
         </div>
     );

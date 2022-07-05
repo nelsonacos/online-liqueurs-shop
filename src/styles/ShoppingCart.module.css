@@ -3,7 +3,7 @@
   right: 0;
   top: 0;
   background-color: white;
-  width: 350px;
+  width: 675px; /* 350px */
   height: 100vh;
   padding: 25px;
   box-sizing: border-box;
@@ -21,16 +21,96 @@
   height: 100%;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
 }
 
+.test {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin: -15px 0 0 0;
+}
+
+.header > h3 {
+  font-size: 18px;
+}
 .close {
-  background-color: #ffd500;
+  background-color: transparent;
+  top: 5;
+  right: 30;
   color: black;
   font-weight: bold;
   border: none;
-  font-size: 16px;
-  padding: 10px 15px;
-  border-radius: 5px;
+  font-size: 28px;
+  padding: 2px 2px;
   cursor: pointer;
+  z-index: 999;
+}
+
+.addedItem {
+  display: flex;
+  justify-content: flex-start;
+  gap: 10px;
+  padding: 10px 0;
+  margin-top: -50px;
+}
+
+.addedItem .cart {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  width: 100%;
+}
+
+.addedItem .cart .infoDetail .subtitle {
+  font-size: 16px;
+  font-weight: 600;
+  color: #000000;
+  margin: 5px 5px 5px 5px;
+}
+
+.addedItem .cart .infoDetail .qty {
+  font-size: 16px;
+  font-weight: 400;
+  color: #000000;
+  margin: 5px 2px 5px 2px;
+}
+
+.addedItem .cart .infoDetail .price {
+  font-size: 16px;
+  font-weight: 700;
+  color: #b12704;
+  margin: 5px 5px 5px 5px;
+}
+
+.addedItem .cart .buttonsDetail .buttonGoCart {
+  min-width: 88px;
+  min-height: 28px;
+  height: 38px;
+  border-radius: 3px;
+  border: none;
+  font-size: 13px;
+  line-height: 24px;
+  background-color: #f6c70a;
+  color: #000;
+  font-weight: 600;
+  text-align: center;
+  margin: 15px 15px 15px 5px;
+}
+
+.addedItem .cart .buttonsDetail .buttonGoCheckout {
+  min-width: 88px;
+  min-height: 28px;
+  width: 234px;
+  height: 38px;
+  border-radius: 3px;
+  border: none;
+  font-size: 13px;
+  line-height: 24px;
+  background-color: #f6c70a;
+  color: #000;
+  font-weight: 600;
+  text-align: center;
+  margin: 15px 15px 15px 5px;
 }
