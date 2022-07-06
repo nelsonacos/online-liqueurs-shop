@@ -11,7 +11,7 @@ const Home: NextPage = ({ products }: InferGetStaticPropsType<typeof getStaticPr
       <h1> Online Liqueurs Shop </h1>
       <div className={styleProduct.items}>
         {products &&
-          products.map(( product: ProductInfo ) => (
+          products.map((product: ProductInfo) => (
             <Product key={product.product_id} item={product} showAs="default" />
           ))}
       </div>
@@ -21,9 +21,10 @@ const Home: NextPage = ({ products }: InferGetStaticPropsType<typeof getStaticPr
 
 export const getStaticProps: GetStaticProps = async (context) => {
   const products: ProductInfo[] = await getData('http://localhost:6000/products');
-
   return {
-    props: { products }
+    props: {
+      products
+    }
   }
 }
 

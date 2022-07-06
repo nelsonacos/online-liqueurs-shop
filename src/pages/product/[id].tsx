@@ -1,13 +1,23 @@
 import { NextPage, GetStaticProps, InferGetStaticPropsType } from "next"
 import Layout from "../../components/Layout"
 import Product from "../../components/Product"
-import { getPathById, getProductById } from "../../helpers/normalize"
+import ProductInfo from '../../interfaces/Product'
+import styles from "../../styles/Product.module.css"
+import { getPathById, getProductById, getData, getRecommendedsProduct } from "../../helpers/normalize"
 
-const ProductPage: NextPage = ({productInfo}: InferGetStaticPropsType<typeof getStaticProps>) => {
+const ProductPage: NextPage = ({ products, productInfo, recommends }: InferGetStaticPropsType<typeof getStaticProps>) => {
     return (
         <Layout title={productInfo.data.id}>
-            <h1> { productInfo.data.id } </h1>
+            <h1> {productInfo.data.id} </h1>
             <Product item={productInfo.data} showAs="Page" />
+            <div className={styles.recommendsContainer}>
+                <>
+                    {recommends &&
+                        recommends.map((product: ProductInfo) => (
+                            <Product key={product.product_id} item={product} showAs="recommendations-page" />
+                        ))}
+                </>
+            </div>
         </Layout>
     )
 }
@@ -21,11 +31,17 @@ export const getStaticPaths = async () => {
     };
 }
 
-export const getStaticProps: GetStaticProps = async ({params}) => {
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+    const products: ProductInfo[] = await getData('http://localhost:6000/products');
     const product = await getProductById(params.id)
+    const recommends = await getRecommendedsProduct(params.id)
 
     return {
-        props: { productInfo: product }
+        props: {
+            products: products,
+            productInfo: product,
+            recommends,
+        }
     }
 }
 

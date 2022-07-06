@@ -3,7 +3,7 @@ import Image from "next/image"
 import styles from "../styles/Product.module.css"
 import ButtonCart from "./ButtonCart"
 import ProductInfo from "../interfaces/Product"
-import React from "react"
+import { useAppContext } from "./StateWrapper";
 
 type ProductProps = {
     item: ProductInfo,
@@ -11,22 +11,72 @@ type ProductProps = {
 }
 
 const Product = ({ item, showAs }: ProductProps) => {
+    const cart = useAppContext();
+    const handleClickClose = () => {
+        cart.closeCart();
+    }
     if (showAs === "Page") {
         return (
             <div className={styles.page}>
-                <div className={styles.image}>
+                <div className={styles.imageContainer}>
                     <Image
+                        className={styles.image}
                         src={item.image_url}
                         alt="item"
-                        width={500}
-                        height={500}
+                        width={350}
+                        height={350}
                     />
                 </div>
                 <div className={styles.info}>
-                    <div>
-                        <h2>{item.name}</h2>
+                    <h2 className={styles.title}>
+                        {item.name}
+                    </h2>
+                    <div className={styles.price}>
+                        ${item.total_price}
                     </div>
-                    <div className={styles.price}>${item.total_price}</div>
+                    <ButtonCart item={item} showIn="page" />
+                </div>
+                <div className={styles.aditionals}>
+                    <h3 className={styles.title}>
+                        the best beer in the world
+                    </h3>
+                    <p>
+                        Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                    </p>
+                    <p>
+                        The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.
+                    </p>
+                </div>
+            </div>
+        );
+    }
+
+    if (showAs === "recommendations-page") {
+        return (
+            <div className={styles.pageRecommendations}>
+                <div>
+                    <Link href={`/product/${item.product_id}`}>
+                        <a>
+                            <Image
+                                src={item.image_url}
+                                alt="Product Details Image"
+                                width={250}
+                                height={250}
+                            />
+                        </a>
+                    </Link>
+                </div>
+                <div>
+                    <h3 className={styles.link}>
+                        <Link href={`/product/${item.product_id}`}>
+                            <a>{item.name}</a>
+                        </Link>
+                    </h3>
+                </div>
+                <div className={styles.default}>
+                    <div className={styles.price}>
+                        ${item.total_price}
+                    </div>
                     <div>
                         <ButtonCart item={item} />
                     </div>
@@ -67,6 +117,29 @@ const Product = ({ item, showAs }: ProductProps) => {
                         width={100}
                         height={100}
                     />
+                </div>
+            </div>
+        );
+    }
+
+    if (showAs === "recommendations") {
+        return (
+            <div className={styles.listRecomendations}>
+                <div>
+                    <Image
+                        src={item.image_url}
+                        alt="cart item"
+                        width={180}
+                        height={180}
+                    />
+                </div>
+                <div className={styles.recomendationDetail}>
+                    <Link href={`/product/${item.product_id}`}>
+                        <a className={styles.link} onClick={handleClickClose}>{item.name}</a>
+                    </Link>
+
+                    <div className={styles.price}>${item.total_price}</div>
+                    <ButtonCart item={item} />
                 </div>
             </div>
         );

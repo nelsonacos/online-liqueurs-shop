@@ -24,7 +24,7 @@ const ShoppingCart = () => {
             className={styles.shoppingCart}
             style={{ display: cart.isOpen ? "block" : "none" }}
         >
-            <div className={styles.test}>
+            <div className={styles.closeContainer}>
                 <button onClick={handleClickClose} className={styles.close}>
                     <AiFillCloseCircle />
                 </button>
@@ -54,6 +54,20 @@ const ShoppingCart = () => {
                             </div>
                         </div>
                     </div>
+                    <div className={styles.recomendations}>
+                    <h3>Discover additional products</h3>
+                    <div className={styles.items}>
+                        {cart.items &&
+                            cart.items.length > 0  &&
+                            cart.items.map((item, i) => (
+                                <Product
+                                    key={item + i.toString()}
+                                    item={item}
+                                    showAs="recommendations"
+                                />
+                            ))}
+                    </div>
+                </div>
                 </>
             )}
         </div>

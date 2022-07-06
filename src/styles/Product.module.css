@@ -39,14 +39,105 @@
   padding: 10px 0;
 }
 
+.listRecomendations {
+  display: flex;
+  gap: 10px;
+  padding: 10px 0px 10px 20px;
+  margin-bottom: 10px;
+}
+
+.recomendationDetail .link {
+  font-size: 14 px;
+  margin: 0px 0px 4px;
+  color: #3483fa;
+}
+
+.recomendationDetail .price {
+  font-size: 21px;
+  color: #0f1111;
+  letter-spacing: normal;
+}
+
+.recomendationAddToCart {
+  display: block;
+}
+
 .page {
   background-color: white;
-  padding: 40px;
   display: flex;
+  align-items: center;
+  justify-content: center;
 
   box-shadow: 0 0 50px rgba(0, 0, 0, 0.15);
   transform: scale(0);
   animation: scale 0.3s ease forwards;
+}
+
+.page .imageContainer {
+  width: 30%;
+  text-align: center;
+}
+
+.page .info {
+  width: 30%;
+  display: block;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.page .info .title {
+  font-size: 24px;
+  font-weight: 600;
+  margin: 20px 0;
+}
+
+.page .info .price {
+  font-size: 28px;
+  color: #b12704;
+  margin: 10px 0;
+  letter-spacing: normal;
+  line-height: 24px;
+}
+
+.page .aditionals {
+  width: 30%;
+  display: block;
+}
+
+.page .aditionals .title {
+  text-align: right;
+  font-size: 20px;
+  margin: 30px 0 30px 40px;
+  padding: 0px 0px 4px;
+  color: #000000;
+  letter-spacing: normal;
+}
+
+.recommendsContainer {
+  margin: 20px 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.pageRecommendations {
+  background-color: white;
+  padding: 20px;
+  margin: 0 5px;
+  font-size: 20px;
+  display: flex;
+  width: 33.99%;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  gap: 10px;
+}
+
+.pageRecommendations .link {
+font-size: 16px;
+color: #3483fa;
+font-weight: 500;
 }
 
 @keyframes scale {
@@ -59,22 +150,6 @@
   }
 }
 
-.image {
-  width: 800px;
-  min-width: 800px;
-}
-
-.info {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.price {
-  font-size: 28px;
-  margin: 10px 0;
-}
-
 .default {
   display: flex;
   align-items: center;
@@ -83,7 +158,7 @@
 }
 
 .default > .price {
-  color: #ff1d25;
+  color: #b12704;
   margin-right: 15px;
   font-size: 18px;
 }
