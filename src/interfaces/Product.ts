@@ -1,6 +1,6 @@
 export default interface Product {
   allowed_packs: [];
-  categories: [];
+  categories: string[];
   compare_at_price: string;
   description: string;
   discount_percentage: number;

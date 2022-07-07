@@ -8,7 +8,7 @@ export const getData = async (url: string) => {
   return data;
 };
 
-const getAllCategories = async () => {
+export const getAllCategories = async () => {
   const data: string[] = await getData("http://localhost:6000/categories");
   return data;
 };
@@ -38,7 +38,7 @@ export const fetchRecommendeds = async (id: string) => {
 export async function getProductById(id: string) {
   const data: ProductInfo[] = await getData("http://localhost:6000/products");
   const product = data.find((item) => item.product_id === id);
-  const recommendations = await fetchRecommendeds(id);
+  const recommendations: RecomendedProduct = await fetchRecommendeds(id);
   return {
     id,
     data: {...product, ...recommendations}
@@ -47,14 +47,14 @@ export async function getProductById(id: string) {
 
 export const recommendsListIds = async (id: string) => {
   const product = await getProductById(id)
-  const list: string[] = await product.data.recommendations
+  const list: string[] = product.data.recommendations
   return list
 }
 
 export const getRecommendedsProduct = async (id: string) => {
   const data: ProductInfo[] = await getData('http://localhost:6000/products')
-  const listIds = await recommendsListIds(id)
-  const productsList = await listIds.map(id => {
+  const listIds: string[] = await recommendsListIds(id)
+  const productsList: ProductInfo[][] = listIds.map(id => {
     return data.filter(product => product.product_id === id)
   })   
   return productsList.flatMap(product => product)

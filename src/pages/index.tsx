@@ -1,17 +1,49 @@
 import type { NextPage, GetStaticProps, InferGetStaticPropsType } from 'next'
-import { getData } from '../helpers/normalize'
+import { getData, getAllCategories } from '../helpers/normalize'
 import Layout from '../components/Layout'
 import Product from '../components/Product'
+import React, { useState } from 'react'
 import styleProduct from "../styles/Product.module.css"
 import ProductInfo from '../interfaces/Product'
 
-const Home: NextPage = ({ products }: InferGetStaticPropsType<typeof getStaticProps>) => {
+
+const Home: NextPage = ({ products, categories }: InferGetStaticPropsType<typeof getStaticProps>) => {
+  const data: ProductInfo[] = products.flatMap(product => product)
+  const [liqueurs, setLiqueurs] = useState<Array<ProductInfo>>([...data])
+
+  const filterProducts = (categorie: string) => {
+    const productsList: ProductInfo[] = data.map(product => product)
+    const temp: ProductInfo[] = productsList.flatMap(product => product)
+    const otra: ProductInfo[] = []
+    const list = temp.forEach(product => {
+      if (categorie === 'todos') {
+        otra.push(product)
+      } else if (product.categories?.includes(categorie)) {
+        otra.push(product)
+      } else {
+        console.log('no tiene categorie')
+      }
+    })
+    setLiqueurs(otra)
+    console.log(otra)
+  }
+  const handleFilter = (event: React.MouseEvent<HTMLElement>) => {
+    const value = (event.target as HTMLButtonElement).innerHTML.trim()
+    const categorie: string = value
+    filterProducts(categorie)
+  }
+
   return (
     <Layout title="Online Liqueurs Shop">
       <h1> Online Liqueurs Shop </h1>
+      <div>
+        <button onClick={handleFilter}>todos</button>
+        {categories &&
+          categories.map(categorie => (<button key={categorie} onClick={handleFilter}>{categorie}</button>))}
+      </div>
       <div className={styleProduct.items}>
-        {products &&
-          products.map((product: ProductInfo) => (
+        {liqueurs &&
+          liqueurs.map((product: ProductInfo) => (
             <Product key={product.product_id} item={product} showAs="default" />
           ))}
       </div>
@@ -21,9 +53,11 @@ const Home: NextPage = ({ products }: InferGetStaticPropsType<typeof getStaticPr
 
 export const getStaticProps: GetStaticProps = async (context) => {
   const products: ProductInfo[] = await getData('http://localhost:6000/products');
+  const categories: String[] = await getAllCategories()
   return {
     props: {
-      products
+      products,
+      categories
     }
   }
 }
