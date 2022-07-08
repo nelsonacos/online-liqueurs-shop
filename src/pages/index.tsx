@@ -8,24 +8,17 @@ import ProductInfo from '../interfaces/Product'
 
 
 const Home: NextPage = ({ products, categories }: InferGetStaticPropsType<typeof getStaticProps>) => {
-  const data: ProductInfo[] = products.flatMap(product => product)
+  const data: ProductInfo[] = products.flatMap((product: ProductInfo) => product)
   const [liqueurs, setLiqueurs] = useState<Array<ProductInfo>>([...data])
 
   const filterProducts = (categorie: string) => {
-    const productsList: ProductInfo[] = data.map(product => product)
-    const temp: ProductInfo[] = productsList.flatMap(product => product)
-    const otra: ProductInfo[] = []
-    const list = temp.forEach(product => {
-      if (categorie === 'todos') {
-        otra.push(product)
-      } else if (product.categories?.includes(categorie)) {
-        otra.push(product)
-      } else {
-        console.log('no tiene categorie')
-      }
+    const productsList: ProductInfo[] = data.flatMap(product => product)
+    const temp: ProductInfo[] = []
+    productsList.forEach(product => {
+      if (categorie === 'todos') temp.push(product)
+      else if (product.categories?.includes(categorie)) temp.push(product)
     })
-    setLiqueurs(otra)
-    console.log(otra)
+    setLiqueurs(temp)
   }
   const handleFilter = (event: React.MouseEvent<HTMLElement>) => {
     const value = (event.target as HTMLButtonElement).innerHTML.trim()
@@ -36,10 +29,10 @@ const Home: NextPage = ({ products, categories }: InferGetStaticPropsType<typeof
   return (
     <Layout title="Online Liqueurs Shop">
       <h1> Online Liqueurs Shop </h1>
-      <div>
+      <div className={styleProduct.filterContainer}>
         <button onClick={handleFilter}>todos</button>
         {categories &&
-          categories.map(categorie => (<button key={categorie} onClick={handleFilter}>{categorie}</button>))}
+          categories.map((categorie: string) => (<button key={categorie} onClick={handleFilter}>{categorie}</button>))}
       </div>
       <div className={styleProduct.items}>
         {liqueurs &&
