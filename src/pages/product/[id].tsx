@@ -10,6 +10,10 @@ const ProductPage: NextPage = ({ products, productInfo, recommends }: InferGetSt
         <Layout title={productInfo.data.id}>
             <h1> {productInfo.data.id} </h1>
             <Product item={productInfo.data} showAs="Page" />
+            <h3 className={styles.recommendsHeading}>
+                Discover additional products
+            </h3>
+
             <div className={styles.recommendsContainer}>
                 <>
                     {recommends &&

@@ -2,7 +2,8 @@ import { useAppContext } from "./StateWrapper";
 import ProductInfo from "../interfaces/Product";
 
 type ButtonCartProps = {
-    item: ProductInfo
+    item: ProductInfo,
+    showIn: string,
 }
 
 const ButtonCart = ({ item, showIn }: ButtonCartProps) => {
