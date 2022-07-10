@@ -10,7 +10,38 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.4);
   display: flex;
   flex-direction: column;
-  overflow-y: scroll;
+  border-collapse: collapse;
+}
+
+.shoppingCart .listItems .navItems{
+  display: flex;
+  align-items:center;
+  justify-content: flex-start;
+  margin-left: 20px;
+  margin-top: 5px;
+}
+
+.shoppingCart .listItems .navItems .all {
+  margin: 10px 20px 10px 20px;
+  gap: 10px;
+  -webkit-text-size-adjust: 100%;
+  box-sizing: border-box;
+  vertical-align: middle;
+  transition: all .1s linear;
+  color: #3483fa;
+  -webkit-appearance: button;
+  background: 0 0;
+  border: 0;
+  cursor: pointer;
+  margin: 0;
+  overflow: visible;
+  padding: 0;
+  font: inherit;
+  line-height: inherit;
+}
+
+.shoppingCart .listItems .navItems .all:hover{
+  text-decoration: underline;
 }
 
 .total {
@@ -43,6 +74,10 @@
   right: 20px;
   width: 20px;
   height: 20px;
+}
+
+.closeContainer .close:hover {
+  color: rgba(0, 0, 0, 0.6);
 }
 
 .header > h3 {
@@ -91,14 +126,20 @@
   min-height: 28px;
   height: 38px;
   border-radius: 3px;
-  border: none;
+  border: 1px solid #efefef;
   font-size: 13px;
   line-height: 24px;
-  background-color: #f6c70a;
+  background-color: #fff;
   color: #000;
   font-weight: 600;
   text-align: center;
   margin: 15px 15px 15px 5px;
+  cursor: pointer;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+.addedItem .cart .buttonsDetail .buttonGoCart:hover{
+  background-color: rgba(239, 239, 239, .6);
 }
 
 .addedItem .cart .buttonsDetail .buttonGoCheckout {
@@ -110,11 +151,20 @@
   border: none;
   font-size: 13px;
   line-height: 24px;
-  background-color: #1DBF73;
-  color: #ffffff;
+  background-color: #f6c70a;
+  border: 1px solid transparent;
+  box-sizing: border-box;
+  cursor: pointer;
+  color: #000;
   font-weight: 600;
   text-align: center;
   margin: 15px 15px 15px 5px;
+  flex-shrink: initial;
+  box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+.addedItem .cart .buttonsDetail .buttonGoCheckout:hover{
+  background-color: #B89402;
 }
 
 .recomendations {

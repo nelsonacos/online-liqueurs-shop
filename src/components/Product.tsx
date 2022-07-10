@@ -2,6 +2,7 @@ import Link from "next/link"
 import Image from "next/image"
 import styles from "../styles/Product.module.css"
 import ButtonCart from "./ButtonCart"
+import { AiFillCheckCircle } from "react-icons/ai";
 import ProductInfo from "../interfaces/Product"
 import { useAppContext } from "./StateWrapper";
 
@@ -108,10 +109,13 @@ const Product = ({ item, showAs }: ProductProps) => {
         return (
             <div className={styles.addedItem}>
                 <div className={styles.added}>
-                    <h3>
-                        Added to Cart
-                    </h3>
-                    <Image
+                    <div className={styles.msg}>
+                        <AiFillCheckCircle className={styles.icon} />
+                        <h3>
+                            Added to Cart
+                        </h3>
+                    </div>
+                    <Image className={styles.image}
                         src={item.image_url}
                         alt="cart item"
                         width={100}
@@ -122,24 +126,34 @@ const Product = ({ item, showAs }: ProductProps) => {
         );
     }
 
-    if (showAs === "recommendations") {
+    if (showAs === "InModal") {
         return (
-            <div className={styles.listRecomendations}>
-                <div>
-                    <Image
-                        src={item.image_url}
-                        alt="cart item"
-                        width={180}
-                        height={180}
-                    />
-                </div>
-                <div className={styles.recomendationDetail}>
-                    <Link href={`/product/${item.product_id}`}>
-                        <a className={styles.link} onClick={handleClickClose}>{item.name}</a>
-                    </Link>
-
-                    <div className={styles.price}>${item.total_price}</div>
-                    <ButtonCart item={item} />
+            <div className={styles.listItems}>
+                <div className={styles.card}>
+                    <div className={styles.image}>
+                        <Image
+                            src={item.image_url}
+                            alt="cart item"
+                            width={80}
+                            height={80}
+                        />
+                    </div>
+                    <div className={styles.details}>
+                        <div className={styles.info}>
+                            <Link href={`/product/${item.product_id}`}>
+                                <a className={styles.link} onClick={handleClickClose}>{item.name}</a>
+                            </Link>
+                            <div className={styles.price}>${item.total_price}</div>
+                        </div>
+                        <div className={styles.actions}>
+                            <span className={styles.inStock}>In Stock</span>
+                            <input name="submit.delete" value="Delete"
+                                data-action="delete"
+                                aria-label="Delete"
+                                type="submit"
+                                className={styles.delete} />
+                        </div>
+                    </div>
                 </div>
             </div>
         );

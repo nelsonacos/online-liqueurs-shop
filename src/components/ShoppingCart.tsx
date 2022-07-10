@@ -1,7 +1,7 @@
 import { useAppContext } from "./StateWrapper";
 import Product from "./Product";
 import styles from "../styles/shoppingCart.module.css";
-import { AiFillCloseCircle } from "react-icons/ai";
+import { AiFillCloseCircle, AiOutlineClose, AiOutlineCloseCircle } from "react-icons/ai";
 
 
 const ShoppingCart = () => {
@@ -26,7 +26,7 @@ const ShoppingCart = () => {
         >
             <div className={styles.closeContainer}>
                 <button onClick={handleClickClose} className={styles.close}>
-                    <AiFillCloseCircle />
+                    <AiOutlineCloseCircle />
                 </button>
             </div>
             {cart.items.length === 0 ? (
@@ -54,20 +54,23 @@ const ShoppingCart = () => {
                             </div>
                         </div>
                     </div>
-                    <div className={styles.recomendations}>
-                    <h3>Discover additional products</h3>
-                    <div className={styles.items}>
-                        {cart.items &&
-                            cart.items.length > 0  &&
-                            cart.items.map((item, i) => (
-                                <Product
-                                    key={item + i.toString()}
-                                    item={item}
-                                    showAs="recommendations"
-                                />
-                            ))}
+                    <div className={styles.listItems}>
+                        <div className={styles.navItems}>
+                            <a href="#" className={styles.all}>Show all</a>
+                        </div>
+
+                        <div className={styles.items}>
+                            {cart.items &&
+                                cart.items.length > 0 &&
+                                cart.items.map((item, i) => (
+                                    <Product
+                                        key={item + i.toString()}
+                                        item={item}
+                                        showAs="InModal"
+                                    />
+                                ))}
+                        </div>
                     </div>
-                </div>
                 </>
             )}
         </div>
