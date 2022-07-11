@@ -2,6 +2,7 @@ import Link from "next/link"
 import Image from "next/image"
 import styles from "../styles/Product.module.css"
 import ButtonCart from "./ButtonCart"
+import DeleteButton from './DeleteButton'
 import { AiFillCheckCircle } from "react-icons/ai";
 import ProductInfo from "../interfaces/Product"
 import { useAppContext } from "./StateWrapper";
@@ -9,14 +10,16 @@ import { useAppContext } from "./StateWrapper";
 type ProductProps = {
     item: ProductInfo,
     showAs?: string,
+    className?: string,
 }
 
 const Product = ({ item, showAs }: ProductProps) => {
     const cart = useAppContext();
     const handleClickClose = () => {
-        cart.closeCart();
+        cart?.closeCart();
     }
     if (showAs === "Page") {
+        console.log(item.image_url)
         return (
             <div className={styles.page}>
                 <div className={styles.imageContainer}>
@@ -45,7 +48,7 @@ const Product = ({ item, showAs }: ProductProps) => {
                         Lorem, ipsum dolor sit amet consectetur adipisicing elit.
                     </p>
                     <p>
-                        The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.
+                        The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.
                     </p>
                 </div>
             </div>
@@ -147,11 +150,7 @@ const Product = ({ item, showAs }: ProductProps) => {
                         </div>
                         <div className={styles.actions}>
                             <span className={styles.inStock}>In Stock</span>
-                            <input name="submit.delete" value="Delete"
-                                data-action="delete"
-                                aria-label="Delete"
-                                type="submit"
-                                className={styles.delete} />
+                            <DeleteButton className={styles.delete} item={item} />
                         </div>
                     </div>
                 </div>

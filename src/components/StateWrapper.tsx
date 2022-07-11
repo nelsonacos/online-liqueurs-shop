@@ -23,8 +23,19 @@ export default function StateWrapper({ children }: StateWrapperProps) {
 
     const handleAddItemToCart = (item: ProductInfo) => {
         const temp: ProductInfo[] = [...items]
-        temp.push(item);
-        setItems([...temp]);
+        if (temp.includes(item)) {
+            alert('item ya existe ne el carro')
+        }
+        else {
+            temp.push(item);
+            setItems([...temp]);
+        }
+    }
+
+    const handleRemoveItemToCart = (item: ProductInfo) => {
+        const temp: ProductInfo[] = [...items]
+        const newItems: ProductInfo[] = temp.filter(product => product.product_id !== item.product_id)
+        setItems([...newItems])
     }
 
     const getNumberOfItems = () => {
@@ -40,6 +51,7 @@ export default function StateWrapper({ children }: StateWrapperProps) {
                 openCart: handleOpenCart,
                 closeCart: handleCloseCart,
                 addItemToCart: handleAddItemToCart,
+                removeItemToCart: handleRemoveItemToCart,
                 getNumberOfItems: getNumberOfItems,
             }}
         >

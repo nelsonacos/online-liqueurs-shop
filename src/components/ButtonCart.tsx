@@ -3,7 +3,7 @@ import ProductInfo from "../interfaces/Product";
 
 type ButtonCartProps = {
     item: ProductInfo,
-    showIn: string,
+    showIn?: string,
 }
 
 const ButtonCart = ({ item, showIn }: ButtonCartProps) => {
