@@ -45,7 +45,7 @@ const Home: NextPage = ({ products, categories }: InferGetStaticPropsType<typeof
 }
 
 export const getStaticProps: GetStaticProps = async (context) => {
-  const products: ProductInfo[] = await getData('http://localhost:6000/products');
+  const products: ProductInfo[] = await getData('http://localhost:3001/products');
   const categories: String[] = await getAllCategories()
   return {
     props: {

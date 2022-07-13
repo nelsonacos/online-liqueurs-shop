@@ -36,7 +36,7 @@ export const getStaticPaths = async () => {
 }
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-    const products: ProductInfo[] = await getData('http://localhost:6000/products');
+    const products: ProductInfo[] = await getData('http://localhost:3001/products');
     const product = await getProductById(params.id)
     const recommends = await getRecommendedsProduct(params.id)
 
