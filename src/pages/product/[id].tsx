@@ -3,7 +3,7 @@ import Layout from "../../components/Layout"
 import Product from "../../components/Product"
 import ProductInfo from '../../interfaces/Product'
 import styles from "../../styles/Product.module.css"
-import { getPathById, getProductById, getData, getRecommendedsProduct } from "../../helpers/normalize"
+import { getPathById, getProductById, getData, getSuggestedProducts } from "../../helpers"
 
 const ProductPage: NextPage = ({ products, productInfo, recommends }: InferGetStaticPropsType<typeof getStaticProps>) => {
     return (
@@ -38,7 +38,7 @@ export const getStaticPaths = async () => {
 export const getStaticProps: GetStaticProps = async ({ params }) => {
     const products: ProductInfo[] = await getData('http://localhost:3001/products');
     const product = await getProductById(params.id)
-    const recommends = await getRecommendedsProduct(params.id)
+    const recommends = await getSuggestedProducts(params.id)
 
     return {
         props: {

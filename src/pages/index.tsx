@@ -1,5 +1,5 @@
 import type { NextPage, GetStaticProps, InferGetStaticPropsType } from 'next'
-import { getData, getAllCategories } from '../helpers/normalize'
+import { getData, getAllCategories } from '../helpers'
 import Layout from '../components/Layout'
 import Product from '../components/Product'
 import React, { useState } from 'react'
