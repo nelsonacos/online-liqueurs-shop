@@ -79,7 +79,7 @@ cd online-liqueurs-shop
 npm install -g json-server
 
 # start the server using a specific port
-json-server --watch db.json --port 6000
+json-server --watch db.json --port 3001
 ```
 
 4. open another command line and go to project folder
