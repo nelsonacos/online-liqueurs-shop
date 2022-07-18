@@ -1,7 +1,7 @@
 import Link from "next/link"
 import Image from "next/image"
 import styles from "../styles/Product.module.css"
-import ButtonCart from "./ButtonCart"
+import AddToCart from "./AddToCart"
 import DeleteButton from './DeleteButton'
 import { AiFillCheckCircle } from "react-icons/ai";
 import ProductInfo from "../interfaces/Product"
@@ -38,7 +38,7 @@ const Product = ({ item, showAs }: ProductProps) => {
                     <div className={styles.price}>
                         ${item.total_price}
                     </div>
-                    <ButtonCart item={item} showIn="page" />
+                    <AddToCart item={item} className="btn-cart-xl" />
                 </div>
                 <div className={styles.aditionals}>
                     <h3 className={styles.title}>
@@ -82,7 +82,7 @@ const Product = ({ item, showAs }: ProductProps) => {
                         ${item.total_price}
                     </div>
                     <div>
-                        <ButtonCart item={item} />
+                        <AddToCart item={item} className="btn-cart"/>
                     </div>
                 </div>
             </div>
@@ -184,7 +184,7 @@ const Product = ({ item, showAs }: ProductProps) => {
                     ${item.total_price}
                 </div>
                 <div>
-                    <ButtonCart item={item} />
+                    <AddToCart item={item} className="btn-cart" />
                 </div>
             </div>
         </div>
