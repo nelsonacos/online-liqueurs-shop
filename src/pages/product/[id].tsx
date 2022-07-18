@@ -3,21 +3,26 @@ import Layout from "../../components/Layout"
 import Product from "../../components/Product"
 import ProductInfo from '../../interfaces/Product'
 import styles from "../../styles/Product.module.css"
-import { getPathById, getProductById, getData, getSuggestedProducts } from "../../helpers"
+import { getAllProducts, getSugestions } from "../../helpers"
 
-const ProductPage: NextPage = ({ products, productInfo, recommends }: InferGetStaticPropsType<typeof getStaticProps>) => {
+const ProductPage: NextPage = ({ id, productInfo, products, recommends }: InferGetStaticPropsType<typeof getStaticProps>) => {
+
+    const suggestedProducts = recommends.flatMap((id: string) => {
+        return products.filter((product: ProductInfo) => product.product_id === id, [])
+    })
+
     return (
-        <Layout title={productInfo.data.id}>
-            <h1> {productInfo.data.id} </h1>
-            <Product item={productInfo.data} showAs="Page" />
+        <Layout title={productInfo.product_id}>
+            <h1> </h1>
+            <Product item={productInfo} showAs="Page" />
             <h3 className={styles.recommendsHeading}>
                 Discover additional products
             </h3>
 
             <div className={styles.recommendsContainer}>
                 <>
-                    {recommends &&
-                        recommends.map((product: ProductInfo) => (
+                    {suggestedProducts &&
+                        suggestedProducts.map((product: ProductInfo) => (
                             <Product key={product.product_id} item={product} showAs="recommendations-page" />
                         ))}
                 </>
@@ -27,24 +32,30 @@ const ProductPage: NextPage = ({ products, productInfo, recommends }: InferGetSt
 }
 
 export const getStaticPaths = async () => {
-    const paths = await getPathById();
-
+    const data: ProductInfo[] = await getAllProducts();
     return {
-        paths,
-        fallback: false,
+        paths: await data.map((item: ProductInfo) => {
+            return {
+                params: {
+                    id: item.product_id,
+                },
+            };
+        }),
+        fallback: false
     };
 }
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-    const products: ProductInfo[] = await getData('http://localhost:3001/products');
-    const product = await getProductById(params.id)
-    const recommends = await getSuggestedProducts(params.id)
+    const products: ProductInfo[] = await getAllProducts();
+    const recommends = await getSugestions(params.id)
+    const productInfo = await products.find((product: ProductInfo) => product.product_id === params.id)
 
     return {
         props: {
+            id: params.id,
+            productInfo,
             products: products,
-            productInfo: product,
-            recommends,
+            recommends: recommends
         }
     }
 }
