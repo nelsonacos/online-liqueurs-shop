@@ -23,7 +23,7 @@ const Product = ({ item, showAs }: ProductProps) => {
         return (
             <div className={styles.page}>
                 <div className={styles.imageContainer}>
-                    <Image
+                <Image
                         className={styles.image}
                         src={item.image_url}
                         alt="item"

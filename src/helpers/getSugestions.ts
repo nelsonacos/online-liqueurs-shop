@@ -1,13 +1,11 @@
-import { getData } from ".";
-import { errorHandler } from "./errorHandler";
-
 export const getSugestions = async (id: string) => {
-  const result = await errorHandler(
-    getData(`http://localhost:3001/recommendations?product_id=${id}
-    `)
-  );
+  const result =
+    await fetch(`http://localhost:3001/recommendations?product_id=${id}
+    `);
   if (!result.ok) {
-    throw new Error(`Error: ${result.error}`);
+    throw new Error(`Request failed with status code ${result.status}`);
   }
-  return result.data[0];
+  const ids = await result.json();
+
+  return await ids[0].recommendations
 };

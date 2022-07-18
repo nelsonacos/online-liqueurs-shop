@@ -1,5 +1,5 @@
 import type { NextPage, GetStaticProps, InferGetStaticPropsType } from 'next'
-import { getData, getAllCategories } from '../helpers'
+import { getAllProducts, getAllCategories } from '../helpers'
 import Layout from '../components/Layout'
 import Product from '../components/Product'
 import React, { useState } from 'react'
@@ -45,7 +45,7 @@ const Home: NextPage = ({ products, categories }: InferGetStaticPropsType<typeof
 }
 
 export const getStaticProps: GetStaticProps = async (context) => {
-  const products: ProductInfo[] = await getData('http://localhost:3001/products');
+  const products: ProductInfo[] = await getAllProducts();
   const categories: String[] = await getAllCategories()
   return {
     props: {

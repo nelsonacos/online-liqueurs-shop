@@ -14,26 +14,26 @@ export const handlers = [
   }),
 
   rest.get(
-    "localhost:3001/recommendations?product_id=4854058319917",
+    "http://localhost:3001/recommendations?product_id=4854058319917",
     (req, res, ctx) => {
       return res(
         ctx.status(200),
         ctx.json([
           {
-            product_id: "4854058319917",
-            recommendations: [
-              "4854059663405",
-              "4854059991085",
-              "4854060384301",
-            ],
-          },
-        ])
+              "product_id": "4854058319917",
+              "recommendations": [
+                  "4854059663405",
+                  "4854059991085",
+                  "4854060384301"
+              ]
+          }
+      ])
       );
     }
   ),
 
   rest.get("*", (req, res, ctx) => {
     console.error(`Invalid Url: ${req.url.toString()}`);
-    return res(ctx.status(500));
+    return res(ctx.status(404));
   }),
 ];
