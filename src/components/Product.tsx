@@ -2,7 +2,7 @@ import Link from "next/link"
 import Image from "next/image"
 import styles from "../styles/Product.module.css"
 import AddToCartButton from "./AddToCartButton"
-import DeleteButton from './DeleteButton'
+import DeleteToCartButton from './DeleteToCartButton'
 import { AiFillCheckCircle } from "react-icons/ai";
 import ProductInfo from "../interfaces/Product"
 import { useAppContext } from "./StateWrapper";
@@ -14,7 +14,7 @@ type ProductProps = {
 }
 
 const Product = ({ item, showAs }: ProductProps) => {
-    const { addItemToCart, isOpen, openCart, closeCart } = useAppContext();
+    const { addItemToCart, isOpen, openCart, closeCart, removeItemToCart } = useAppContext();
     const handleClickClose = () => {
         closeCart();
     }
@@ -162,7 +162,11 @@ const Product = ({ item, showAs }: ProductProps) => {
                         </div>
                         <div className={styles.actions}>
                             <span className={styles.inStock}>In Stock</span>
-                            <DeleteButton className={styles.delete} item={item} />
+                            <DeleteToCartButton
+                                className={styles.delete}
+                                item={item}
+                                removeItemToCart={removeItemToCart}
+                            />
                         </div>
                     </div>
                 </div>
