@@ -1,7 +1,7 @@
 import Link from "next/link"
 import Image from "next/image"
 import styles from "../styles/Product.module.css"
-import AddToCart from "./AddToCart"
+import AddToCartButton from "./AddToCartButton"
 import DeleteButton from './DeleteButton'
 import { AiFillCheckCircle } from "react-icons/ai";
 import ProductInfo from "../interfaces/Product"
@@ -14,16 +14,16 @@ type ProductProps = {
 }
 
 const Product = ({ item, showAs }: ProductProps) => {
-    const cart = useAppContext();
+    const { addItemToCart, isOpen, openCart, closeCart } = useAppContext();
     const handleClickClose = () => {
-        cart?.closeCart();
+        closeCart();
     }
     if (showAs === "Page") {
         console.log(item.image_url)
         return (
             <div className={styles.page}>
                 <div className={styles.imageContainer}>
-                <Image
+                    <Image
                         className={styles.image}
                         src={item.image_url}
                         alt="item"
@@ -38,7 +38,13 @@ const Product = ({ item, showAs }: ProductProps) => {
                     <div className={styles.price}>
                         ${item.total_price}
                     </div>
-                    <AddToCart item={item} className="btn-cart-xl" />
+                    <AddToCartButton
+                        item={item}
+                        className="btn-cart-xl"
+                        addItemToCart={addItemToCart}
+                        isOpen={isOpen}
+                        openCart={openCart}
+                    />
                 </div>
                 <div className={styles.aditionals}>
                     <h3 className={styles.title}>
@@ -82,7 +88,13 @@ const Product = ({ item, showAs }: ProductProps) => {
                         ${item.total_price}
                     </div>
                     <div>
-                        <AddToCart item={item} className="btn-cart"/>
+                        <AddToCartButton
+                            item={item}
+                            className="btn-cart"
+                            addItemToCart={addItemToCart}
+                            isOpen={isOpen}
+                            openCart={openCart}
+                        />
                     </div>
                 </div>
             </div>
@@ -184,7 +196,13 @@ const Product = ({ item, showAs }: ProductProps) => {
                     ${item.total_price}
                 </div>
                 <div>
-                    <AddToCart item={item} className="btn-cart" />
+                    <AddToCartButton
+                        item={item}
+                        className="btn-cart"
+                        addItemToCart={addItemToCart}
+                        isOpen={isOpen}
+                        openCart={openCart}
+                    />
                 </div>
             </div>
         </div>
