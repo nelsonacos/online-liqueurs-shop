@@ -1,12 +1,18 @@
 import '../styles/globals.css'
 import type { AppProps } from 'next/app'
-import StateWrapper from '../components/StateWrapper'
+import { composeProviders } from '../utils'
+import { CartProvider, ModalProvider } from '../context'
+
+const Providers = composeProviders(
+  CartProvider,
+  ModalProvider,
+)
 
 function MyApp({ Component, pageProps }: AppProps) {
   return (
-    <StateWrapper>
+    <Providers>
       <Component {...pageProps} />
-    </StateWrapper>
+    </Providers>
   )
 }
 

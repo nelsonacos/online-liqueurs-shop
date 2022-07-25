@@ -1,7 +1,8 @@
 import { NextPage, GetStaticProps, InferGetStaticPropsType } from "next"
-import Layout from "../../components/Layout"
-import Product from "../../components/Product"
-import ProductInfo from '../../interfaces/Product'
+import { Layout } from "../../components/Layout"
+import { ProductDetailView, DefaultProductListView } from "../../components/Product"
+import { RenderProductList } from '../../components/Ui/'
+import { Product as ProductInfo } from '../../interfaces'
 import styles from "../../styles/Product.module.css"
 import { getAllProducts, getSugestions } from "../../helpers"
 
@@ -14,19 +15,16 @@ const ProductPage: NextPage = ({ id, productInfo, products, recommends }: InferG
     return (
         <Layout title={productInfo.product_id}>
             <h1> </h1>
-            <Product item={productInfo} showAs="Page" />
+            <ProductDetailView item={productInfo} />
             <h3 className={styles.recommendsHeading}>
                 Discover additional products
             </h3>
 
-            <div className={styles.recommendsContainer}>
-                <>
-                    {suggestedProducts &&
-                        suggestedProducts.map((product: ProductInfo) => (
-                            <Product key={product.product_id} item={product} showAs="recommendations-page" />
-                        ))}
-                </>
-            </div>
+            <RenderProductList
+                className={styles.recommendsContainer}
+                list={suggestedProducts}
+                View={DefaultProductListView}
+            />
         </Layout>
     )
 }

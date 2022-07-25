@@ -1,6 +1,6 @@
-import ProductInfo from "../interfaces/Product";
+import { Product as ProductInfo } from "../../interfaces";
 
-type AddToCartButtonProps = {
+type Props = {
     item: ProductInfo,
     className: string,
     addItemToCart(item: ProductInfo): void,
@@ -8,7 +8,7 @@ type AddToCartButtonProps = {
     openCart(): void,
 }
 
-const AddToCartButton = ({ item, className, addItemToCart, isOpen, openCart }: AddToCartButtonProps) => {
+const AddToCartButton = ({ item, className, addItemToCart, isOpen, openCart }: Props) => {
     const handleClick = () => {
         addItemToCart(item);
 

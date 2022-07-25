@@ -1,4 +1,4 @@
-import ProductInfo from '../interfaces/Product';
+import { Product as ProductInfo } from '../../interfaces';
 
 type DeleteToCartButtonProps = {
     item: ProductInfo,

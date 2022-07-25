@@ -1,9 +1,3 @@
-import { getAllProducts } from "./getAllProducts";
-import { getAllCategories } from "./getAllCategories";
-import { getSugestions } from "./getSugestions";
-
-export {
-  getAllProducts,
-  getAllCategories,
-  getSugestions,
-};
+export * from "./getAllProducts";
+export * from "./getAllCategories";
+export * from "./getSugestions";
