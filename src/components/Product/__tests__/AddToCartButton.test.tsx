@@ -1,6 +1,6 @@
 import { render, screen, fireEvent } from '@testing-library/react'
-import ProductInfo from '../../interfaces/Product'
-import liqueurs from '../../mocks/liqueurs-data.json'
+import ProductInfo from '../../../interfaces/Product'
+import liqueurs from '../../../mocks/liqueurs-data.json'
 import AddToCartButton from '../AddToCartButton'
 
 describe('Tests in <AddToCart />', () => {

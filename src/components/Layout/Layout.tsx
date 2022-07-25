@@ -1,8 +1,8 @@
 import React, { ReactNode } from 'react'
 import Head from "next/head"
 import Menu from "./Menu"
-import styles from '../styles/Layout.module.css'
-import ShoppingCart from "./ShoppingCart"
+import styles from '../../styles/Layout.module.css'
+import ModalCartView from "../Cart/ModalCartView"
 
 export type LayoutProps = {
     title: string,
@@ -23,7 +23,7 @@ export default function layout({ title, children }: LayoutProps) {
             <div className={styles.container}>
                 {children}
             </div>
-            <ShoppingCart />
+            <ModalCartView />
         </div>
     )
 }

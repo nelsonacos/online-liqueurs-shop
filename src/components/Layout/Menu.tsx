@@ -1,6 +1,6 @@
 import Link from "next/link";
-import {useAppContext} from "./StateWrapper";
-import styles from "../styles/Menu.module.css";
+import {useAppContext} from "../StateWrapper";
+import styles from "../../styles/Menu.module.css";
 
 const Menu = () => {
     const cart = useAppContext()
